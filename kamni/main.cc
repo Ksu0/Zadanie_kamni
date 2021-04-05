@@ -1,8 +1,8 @@
 /*
  * main.cc
  *
- *  Created on: 30 РЅРѕСЏР±. 2020 Рі.
- *      Author: Р›РµРІ
+ *  Created on: 05 апр. 2021.
+ *      Author: Ксюша
  */
 #include <iostream>
 #include <random>
@@ -37,10 +37,10 @@ int read_int(const char * question)
 						std::cerr << "Error!" << std::endl;
 						exit(1);
 					}
-					std::cout << "Введи число!" << std::endl;
+					std::cout << "Введите число" << std::endl;
 					goto re;
 				}else if(not inps.eof()){
-						std::cout << "Р’РІРµРґРё РѕРґРЅСѓ С†РёС„СЂСѓ!" << std::endl;
+						std::cout << "Введите одну цифру" << std::endl;
 						goto re;
 					}
 			}
@@ -50,10 +50,10 @@ int menu_v=0;
 int menu()
 {
 	menuqwe:std::cout << "Выберите сложность игры" << std::endl;
-	std::cout << "1. Р›С‘РіРєРёР№" << std::endl;
-	std::cout << "2. РЎР»РѕР¶РЅС‹Р№" << std::endl;
-	std::cout << "0. Р’С‹Р№С‚Рё РёР· РёРіСЂС‹" << std::endl;
-	menu_v = read_int("Р’С‹Р±РѕСЂ: ");
+	std::cout << "1) Лёгкий" << std::endl;
+	std::cout << "2) Сложный" << std::endl;
+	std::cout << "0) Выйти из игры" << std::endl;
+	menu_v = read_int("В итоге: ");
 	switch (menu_v)
 		{
 		case 1:
@@ -66,7 +66,7 @@ int menu()
 			return 0;
 			break;
 		default:
-			std::cout << "РќРµС‚ С‚Р°РєРѕРіРѕ РІС‹СЂРёР°РЅС‚Р°!";
+			std::cout << "Такого вырианта нет";
 			break;
 		}
 	goto menuqwe;
@@ -78,22 +78,22 @@ int main()
 		std::minstd_rand rnd{
 			unsigned(clk::now().time_since_epoch().count())
 	};
-	std::cout << "Р”РѕР±СЂРѕ РІ РёРіСЂСѓ РєР°РјРЅРё." << std::endl;
+	std::cout << "Камни." << std::endl;
 	menu_v=menu();
 				switch (menu_v)
 						{
 						case 1:
-							std::cout << "Р›С‘РіРєРёР№ Р±РѕС‚!"<< std::endl;
+							std::cout << "Лёгкий уровень"<< std::endl;
 							break;
 						case 2:
-							std::cout << "РЎР»РѕР¶РЅС‹Р№ Р±РѕС‚!"<< std::endl;
+							std::cout << "Сложный уровень"<< std::endl;
 							break;
 						case 0:
-							std::cout << "РџРѕРєР°!"<< std::endl;
+							std::cout << "До встречи!"<< std::endl;
 							return 0;
 							break;
 						default:
-							std::cout << "РќРµС‚ С‚Р°РєРѕРіРѕ РІС‹СЂРёР°РЅС‚Р°!";
+							std::cout << "Такого вырианта нет";
 							break;
 						}
 
@@ -105,19 +105,19 @@ int main()
 
 
 	do{
-			qre:std::cout << "Р’ РєСѓС‡Рµ " << stone_count << " РєР°РјРЅРµР№." << std::endl;
-			std::cout << "РЎРєРѕР»СЊРєРѕ РІР·СЏС‚СЊ? (РѕС‚ 1 РґРѕ 3) " << std::endl;
-			stone = read_int("РЎРєРѕР»СЊРєРѕ: ");
-			std::cout << "РўС‹ РІР·СЏР»: " << stone << std::endl;
+			qre:std::cout << "В кучке " << stone_count << " камней" << std::endl;
+			std::cout << "Сколько возьмете? (от 1 до 3) " << std::endl;
+			stone = read_int("Взять: ");
+			std::cout << "Вы взяли: " << stone << std::endl;
 
 			if(stone<=3 && stone<=stone_count && stone>=1){
 				stone_count-=stone;
 			}
-			else{ std::cout << "РќРµР»СЊР·СЏ СЃС‚РѕР»СЊРєРѕ Р±СЂР°С‚СЊ!" << std::endl;
+			else{ std::cout << "Нельзя столько брать!" << std::endl;
 				goto qre;}
 			{
 			if (stone_count==0){
-				std::cout << "РўС‹ РїСЂРѕРёРіСЂР°Р»!" << std::endl;
+				std::cout << "Проигрыш!" << std::endl;
 				break;
 			}
 			if (menu_v==2)
@@ -131,51 +131,51 @@ int main()
 			else{
 				goto qwe1;
 			}
-			std::cout << "Р‘РѕС‚ РІР·СЏР» " << stone << " РєР°РјРЅРµР№." << std::endl;
+			std::cout << "Бот взял " << stone << " камней" << std::endl;
 			}
 			if(stone_count==0){
-				std::cout << "РћСЃС‚Р°Р»РѕСЃСЊ " << stone_count << " РєР°РјРЅРµР№." << std::endl;
-				std::cout << "РўС‹ РІС‹РёРіСЂР°Р»!" << std::endl;
+				std::cout << "Осталось " << stone_count << " камней" << std::endl;
+				std::cout << "Победа!" << std::endl;
 				break;
 			}
 			else if(stone_count==1){
-				std::cout << "РћСЃС‚Р°Р»РѕСЃСЊ " << stone_count << " РєР°РјРЅРµР№." << std::endl;
-				std::cout << "РўС‹ РїСЂРѕРёРіСЂР°Р»!" << std::endl;
+				std::cout << "Осталось " << stone_count << " камней" << std::endl;
+				std::cout << "Проигрыш!" << std::endl;
 				break;
 			}
 
 		} while(stone_count!=0);
 
-		std::cout << "Р•С‰С‘ СЂР°Р·?" << std::endl;
-		iim:stone = read_int("1 РґР°, 2 РЅРµС‚");
+		std::cout << "Ещё раз?" << std::endl;
+		iim:stone = read_int("1 да, 2 нет");
 		if( stone==1 || stone==2 ){
 			if(stone==1)
 				goto nextgame;
 			else if (stone==2)
-				std::cout << "Р“Р»Р°РІРЅРѕРµ РјРµРЅСЋ" << std::endl;
+				std::cout << "Меню" << std::endl;
 			menu_v=menu();
 							switch (menu_v)
 									{
 									case 1:
-										std::cout << "Р›С‘РіРєРёР№ Р±РѕС‚!"<< std::endl;
+										std::cout << "Лёгкий уровень"<< std::endl;
 										goto nextgame;
 										break;
 									case 2:
-										std::cout << "РЎР»РѕР¶РЅС‹Р№ Р±РѕС‚!"<< std::endl;
+										std::cout << "Сложный уровень"<< std::endl;
 										goto nextgame;
 										break;
 									case 0:
-										std::cout << "РџРѕРєР°!"<< std::endl;
+										std::cout << "До встречи!"<< std::endl;
 										return 0;
 										break;
 									default:
-										std::cout << "РќРµС‚ С‚Р°РєРѕРіРѕ РІС‹СЂРёР°РЅС‚Р°!";
+										std::cout << "Такого вырианта нет";
 										break;
 									}
 
 			}
 		else {
-			std::cout << "РќРµС‚ С‚Р°РєРѕРіРѕ РІР°СЂРёР°РЅС‚Р°!" << std::endl;
+			std::cout << "Такого вырианта нет" << std::endl;
 			goto iim;}
 	return 0;
 }
