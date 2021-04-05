@@ -1,9 +1,4 @@
-/*
- * main.cc
- *
- *  Created on: 05 апр. 2021.
- *      Author: Ксюша
- */
+
 #include <iostream>
 #include <random>
 #include <chrono>
@@ -66,7 +61,7 @@ int menu()
 			return 0;
 			break;
 		default:
-			std::cout << "Такого вырианта нет";
+			std::cout << "Такого варианта нет";
 			break;
 		}
 	goto menuqwe;
@@ -93,7 +88,7 @@ int main()
 							return 0;
 							break;
 						default:
-							std::cout << "Такого вырианта нет";
+							std::cout << "Такого варианта нет";
 							break;
 						}
 
@@ -169,13 +164,13 @@ int main()
 										return 0;
 										break;
 									default:
-										std::cout << "Такого вырианта нет";
+										std::cout << "Такого варианта нет";
 										break;
 									}
 
 			}
 		else {
-			std::cout << "Такого вырианта нет" << std::endl;
+			std::cout << "Такого варианта нет" << std::endl;
 			goto iim;}
 	return 0;
 }
